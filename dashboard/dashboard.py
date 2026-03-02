@@ -45,19 +45,40 @@ funnel_id = st.sidebar.number_input("Funnel ID", min_value=1, step=1, value=1)
 st.sidebar.code("uvicorn main:app --reload")
 
 
-## API Functions
+# API
 
 def get_funnel_steps(funnel_id: int):
-    return requests.get(f"{BASE_URL}/analytics/funnel/{funnel_id}/steps").json()
+    try:
+        response = requests.get(f"{BASE_URL}/analytics/funnel/{funnel_id}/steps")
+        response.raise_for_status()
+        return response.json()
+    except Exception as e:
+        st.error("Error fetching step data.")
+        st.write(e)
+        st.stop()
 
 def get_funnel_summary(funnel_id: int):
-    return requests.get(f"{BASE_URL}/analytics/funnel/{funnel_id}/summary").json()
+    try:
+        response = requests.get(f"{BASE_URL}/analytics/funnel/{funnel_id}/summary")
+        response.raise_for_status()
+        return response.json()
+    except Exception as e:
+        st.error("Error fetching summary data.")
+        st.write(e)
+        st.stop()
 
 def get_funnel_time(funnel_id: int):
-    return requests.get(f"{BASE_URL}/analytics/funnel/{funnel_id}/time").json()
+    try:
+        response = requests.get(f"{BASE_URL}/analytics/funnel/{funnel_id}/time")
+        response.raise_for_status()
+        return response.json()
+    except Exception as e:
+        st.error("Error fetching time analysis.")
+        st.write(e)
+        st.stop()
 
 
-## Load Trigger
+
 if st.sidebar.button("Load Dashboard"):
     st.session_state["load"] = True
 
@@ -67,17 +88,14 @@ if "load" not in st.session_state:
 
 
 # Funnel Performance
+
 st.markdown("## 📈 Funnel Performance")
 
 summary_data = get_funnel_summary(funnel_id)
 
-if "error" in summary_data:
-    st.error(summary_data["error"])
-    st.stop()
-
 biggest_drop = summary_data.get("biggest_drop_off_step")
 
-st.subheader("📌 Funnel Summary")
+st.subheader(" Funnel Summary")
 
 col1, col2, col3 = st.columns(3)
 
@@ -104,7 +122,6 @@ with col3:
     metric_card("Overall Conversion", f"{summary_data.get('overall_conversion_percentage', 0)}%")
 
 
-# Biggest Drop-Off Card
 if biggest_drop:
     st.markdown(f"""
     <div style="
@@ -115,7 +132,7 @@ if biggest_drop:
         font-weight:600;
         margin-top:15px;
         font-size:18px;">
-    🚨 <b>Biggest Drop-Off:</b> Step {biggest_drop['step_order']} 
+    <b>Biggest Drop-Off:</b> Step {biggest_drop['step_order']} 
     ({biggest_drop['step_name']}) — 
     {biggest_drop['drop_off_users']} users 
     ({biggest_drop['drop_off_percentage']}%)
@@ -125,14 +142,11 @@ if biggest_drop:
 st.divider()
 
 
-## Step Level Analysis
+# Step Level Analysis
+
 st.markdown("## 📍 Step-Level Analysis")
 
 steps_data = get_funnel_steps(funnel_id)
-
-if "error" in steps_data:
-    st.error(steps_data["error"])
-    st.stop()
 
 steps_df = pd.DataFrame(steps_data["steps"])
 steps_df["step_name"] = steps_df["step_name"].str.replace("_", " ").str.title()
@@ -140,7 +154,8 @@ steps_df["step_name"] = steps_df["step_name"].str.replace("_", " ").str.title()
 st.table(steps_df)
 
 
-## Charts
+# Charts
+
 col1, col2 = st.columns(2)
 
 with col1:
@@ -195,14 +210,11 @@ with col2:
 st.divider()
 
 
-## Process Time Analysis
+# Process Time Analysis
+
 st.markdown("## ⏱ Process Time Analysis")
 
 time_data = get_funnel_time(funnel_id)
-
-if "error" in time_data:
-    st.error(time_data["error"])
-    st.stop()
 
 slowest = time_data.get("slowest_transition")
 
@@ -215,7 +227,8 @@ st.table(time_df)
 st.divider()
 
 
-## Insights
+# Insights
+
 st.markdown("## 🔎 Insights ")
 
 overall_conv = summary_data.get("overall_conversion_percentage")
