@@ -1,72 +1,93 @@
-# OnboardIQ — Onboarding Funnel Intelligence Dashboard
+# OnboardIQ — Onboarding Funnel Intelligence Engine
 
-A full-stack onboarding funnel analytics engine built with FastAPI, PostgreSQL, and Streamlit.
+A full-stack onboarding analytics system built with **FastAPI, PostgreSQL, and Streamlit**.
 
-This project tracks onboarding events, calculates conversion rates, detects drop-offs, analyzes time between steps, and surfaces actionable insights through an interactive dashboard.
-
----
-
-## Features
-
-- REST API for onboarding event tracking
-- Step-level conversion rate calculation
-- Drop-off detection using SQL window functions
-- Overall funnel summary metrics
-- Step-to-step time analysis
-- Slowest transition identification
-- Interactive executive dashboard
-- Strategic insight generation
+OnboardIQ simulates a real-world onboarding intelligence platform used by fintech and digital banking teams to measure conversion, detect friction, and optimize customer onboarding journeys.
 
 ---
 
-## Architecture
+## Project Objective
 
-Backend: FastAPI  
-Database: PostgreSQL  
-Analytics: SQL (Window Functions + Aggregations)  
-Dashboard: Streamlit  
+Digital onboarding is one of the most critical growth levers in financial services.
 
-Flow:
+This project demonstrates how product teams can:
 
-Client → FastAPI → PostgreSQL → Analytics Queries → Dashboard → Insights
+- Track onboarding behavior in real-time  
+- Quantify drop-offs between steps  
+- Measure time delays in verification processes  
+- Identify bottlenecks in approval flows  
+- Generate structured, data-driven insights  
 
----
-
-## Sample Dashboard
-
-(Screenshots located in /screenshots folder)
+It mirrors how internal product analytics systems operate inside modern digital banks.
 
 ---
 
-## How to Run Locally
+## Core Capabilities
 
-1. Clone the repository
-2. Create virtual environment:
-   python -m venv venv
-3. Activate:
-   venv\Scripts\Activate.ps1
-4. Install dependencies:
-   pip install -r requirements.txt
+### Step-Level Analytics
+- Users at each step  
+- Drop-off counts and percentages  
+- Conversion rate calculations using SQL window functions  
 
-5. Run backend:
-   uvicorn app.main:app --reload
+### Funnel Summary Metrics
+- Total started  
+- Total completed  
+- Overall conversion rate  
+- Biggest drop-off step detection  
 
-6. Run dashboard:
-   streamlit run dashboard/dashboard.py
+### Time-Based Process Analysis
+- Average time between onboarding steps  
+- Min / Max transition times  
+- Slowest transition identification  
+
+### Executive Dashboard
+Built using Streamlit:
+- Clean metric cards  
+- Funnel visualization  
+- Drop-off charts  
+- Time analysis tables  
+- Strategic recommendations  
 
 ---
 
-Digital onboarding experiences are critical in fintech and digital banking.
+## Architecture Overview
 
-This system demonstrates how product teams can:
+**Backend:** FastAPI  
+**Database:** PostgreSQL  
+**Analytics Layer:** SQL (Window Functions + Aggregations)  
+**Dashboard:** Streamlit  
 
-- Identify friction points
-- Quantify drop-offs
-- Measure process delays
-- Make data-driven improvements
+**Data Flow:**
+
+Client → FastAPI → PostgreSQL → SQL Analytics Engine → Streamlit Dashboard → Insights
 
 ---
 
-## Author
-Blessing Okakwu  
-Product Analytics | Digital Banking | Data Strategy
+## Project Structure
+onboardiq-funnel-analyzer/
+│
+├── app/
+│ ├── main.py
+│ ├── database.py
+│
+├── dashboard/
+│ └── dashboard.py
+│
+├── screenshots/
+├── requirements.txt
+├── README.md
+└── .gitignore
+ 
+---
+##  Running Locally
+
+1️⃣ Create virtual environment
+python -m venv venv
+2️⃣ Activate  
+venv\Scripts\Activate.ps1
+3️⃣ Install dependencies  
+pip install -r requirements.txt
+4️⃣ Start backend  
+uvicorn app.main:app --reload
+5️⃣ Launch dashboard  
+streamlit run dashboard/dashboard.py
