@@ -59,21 +59,6 @@ Built using Streamlit:
 
 Client → FastAPI → PostgreSQL → SQL Analytics Engine → Streamlit Dashboard → Insights
 
-
-## Project Structure
-onboardiq-funnel-analyzer/
-│
-├── app/
-│ ├── main.py
-│ ├── database.py
-│
-├── dashboard/
-│ └── dashboard.py
-│
-├── screenshots/
-├── requirements.txt
-├── README.md
-└── .gitignore
  
 ##  Running Locally
 
