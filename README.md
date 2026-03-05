@@ -77,13 +77,17 @@ onboardiq-funnel-analyzer/
  
 ##  Running Locally
 
-1️⃣ Create virtual environment
+=> Create virtual environment
 python -m venv venv
-2️⃣ Activate  
+
+=>Activate  
 venv\Scripts\Activate.ps1
-3️⃣ Install dependencies  
+
+=>Install dependencies  
 pip install -r requirements.txt
-4️⃣ Start backend  
+
+=>Start backend  
 uvicorn app.main:app --reload
-5️⃣ Launch dashboard  
+
+=>Launch dashboard  
 streamlit run dashboard/dashboard.py
