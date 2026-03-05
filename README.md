@@ -4,7 +4,6 @@ A full-stack onboarding analytics system built with **FastAPI, PostgreSQL, and S
 
 OnboardIQ simulates a real-world onboarding intelligence platform used by fintech and digital banking teams to measure conversion, detect friction, and optimize customer onboarding journeys.
 
----
 
 ## Project Objective
 
@@ -20,7 +19,7 @@ This project demonstrates how product teams can:
 
 It mirrors how internal product analytics systems operate inside modern digital banks.
 
----
+
 
 ## Core Capabilities
 
@@ -48,7 +47,6 @@ Built using Streamlit:
 - Time analysis tables  
 - Strategic recommendations  
 
----
 
 ## Architecture Overview
 
@@ -61,7 +59,6 @@ Built using Streamlit:
 
 Client → FastAPI → PostgreSQL → SQL Analytics Engine → Streamlit Dashboard → Insights
 
----
 
 ## Project Structure
 onboardiq-funnel-analyzer/
@@ -78,7 +75,6 @@ onboardiq-funnel-analyzer/
 ├── README.md
 └── .gitignore
  
----
 ##  Running Locally
 
 1️⃣ Create virtual environment
